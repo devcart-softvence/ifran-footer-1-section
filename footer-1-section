@@ -137,7 +137,9 @@
       <div class="footer-contact-info">
         <h4>{{ section.settings.contact-column-header }}</h4>
         <p>{{ section.settings.contact-column-subheading }}</p>
-        <h2>{{ section.settings.contact-info }}</h2>
+        <h2>{{ section.settings.contact-info-1 }}</h2>
+        <p>{{ section.settings.contact-info-2 }}</p>
+        <p>{{ section.settings.contact-info-3 }}</p>
       </div>
       
       
@@ -217,10 +219,23 @@
       },
       {
         "type": "text",
-        "id": "contact-info",
-        "label": "Contact Info",
-        "default": "+670 413 90 762 <br/> shofy@support.com <br/> 79 Sleepy Hollow St. <br/> Jamaica, New York 1432"
+        "id": "contact-info-1",
+        "label": "Contact Info-1",
+        "default": "+670 413 90 762"
       },
+      {
+        "type": "text",
+        "id": "contact-info-2",
+        "label": "Contact Info-2",
+        "default": "shofy@support.com"
+      },
+      {
+        "type": "text",
+        "id": "contact-info-3",
+        "label": "Contact Info-3",
+        "default": "<P> 79 Sleepy Hollow St. <br/> Jamaica, New York 1432 </p>"
+      },
+
 
       {
         "type": "text",
