@@ -31,7 +31,7 @@ Menu Header 2: Set another heading (e.g., Information).
 
 Info Links: Choose another navigation menu to display informational links.
 
-## 💡 You can manage your navigation menus via Online Store → Navigation.
+# 💡 You can manage your navigation menus via Online Store → Navigation.
 
 ## 4. Configure Contact Information
 Contact Column Heading: Title for the contact section.
@@ -50,7 +50,7 @@ Social media icons are rendered using the social-icons snippet and dynamically d
 ## 6. Footer Bottom
 Footer Bottom Text: Text at the bottom (e.g., copyright).
 
-# Payment Logos: Option to upload and display payment method logos or trust badges.
+Payment Logos: Option to upload and display payment method logos or trust badges. (optional)
 
 ## Tips
 Use high-contrast background and text colors for better readability.
