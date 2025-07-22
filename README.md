@@ -4,6 +4,22 @@ The Custom Footer Section is a flexible, responsive footer layout for your Shopi
 
 <img width="1900" height="490" alt="custom footer section pc view" src="https://github.com/user-attachments/assets/2b99e6f7-cb74-4e70-8797-f8ae719c3953" />
 
+# ✅ How to Install
+Follow these simple steps to install and use the Before After Slider section in your Shopify theme:
+
+## 1. Open Your Shopify Theme Code Editor
+From your Shopify admin, go to Online Store > Themes.
+
+Find your current live theme, then click on 3 dots (...) > Edit code.
+
+## 2. Create a New Section
+Inside the code editor, look for the Sections folder.
+
+Click Add a new section and name it.
+
+Paste the entire section code into the new file and click Save.
+
+
 
 # How to Use
 ## 1. Add the Section
