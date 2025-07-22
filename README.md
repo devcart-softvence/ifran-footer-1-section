@@ -42,7 +42,7 @@ Contact Info 1: Primary contact method (e.g., phone).
 
 Contact Info 2: Email address.
 
-Contact Info 3: Physical address (supports basic HTML like <br>).
+Contact Info 3: Physical address (supports basic HTML like (<br>).
 
 ## 5. Social Media Icons
 Social media icons are rendered using the social-icons snippet and dynamically display links from your theme settings.
