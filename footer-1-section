@@ -59,7 +59,7 @@
     list-style-type: none;
     margin-bottom: 4px;
   }
-  .footer-menu-list ul li :hover {
+  .footer-menu-list ul li:hover {
     color: #5639F8;
     text-decoration: underline;
   }
@@ -123,9 +123,9 @@
         <div class="footer-menu-list">
           <h4>{{ section.settings.menu-header-2 }}</h4>
           <ul>
-        {% assign product_links = linklists[section.settings.info_links] %}
-          {% if product_links.links.size > 0 %}
-            {% for link in product_links.links %}
+        {% assign info_links = linklists[section.settings.info_links] %}
+          {% if info_links.links.size > 0 %}
+            {% for link in info_links.links %}
               <li><a href="{{ link.url }}">{{ link.title }}</a></li>
             {% endfor %}
           {% endif %}
