@@ -80,6 +80,10 @@
     border-top: 1px solid #010f1c1a;
     padding-top: 40px;
   }
+  .payment-icons svg {
+    width: 50px;
+    margin-right: 10px;
+  }
 
   @media screen and (min-width: 768px){
     .footer-top-part{
@@ -152,9 +156,13 @@
           <p>{{ section.settings.footer-bottom-text }}</p>
         </div>
 
-         <div>
-            <img src="{{section.settings.payments-logo | img_url: "500x"  }}"  class="footer-payments-logo">
-         </div>
+        {% if shop.enabled_payment_types.size > 0 %}
+          <div class="payment-icons">
+            {{ payment_types | payment_type_svg_tag }}
+          </div>
+        {% else %}
+          <img src="{{ section.settings.payments-logo | img_url: '500x' }}" class="footer-payments-logo">
+        {% endif %}
       </div>
     </div>
 </footer>
