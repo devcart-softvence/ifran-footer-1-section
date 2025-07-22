@@ -59,7 +59,7 @@
     list-style-type: none;
     margin-bottom: 4px;
   }
-  .footer-menu-list ul li:hover {
+  .footer-menu-list ul li :hover {
     color: #5639F8;
     text-decoration: underline;
   }
