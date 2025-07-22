@@ -21,7 +21,7 @@ Paste the entire section code into the new file and click Save.
 
 
 
-# How to Use
+# ✅ How to Use
 ## 1. Add the Section
 Open the Shopify Theme Editor (Customize).
 
@@ -77,7 +77,7 @@ Use navigation menus to guide users to key collections or informational pages.
 
 Upload compressed payment logos for optimal loading speed.
 
-# Troubleshooting
+# ✅ Troubleshooting
 Menus not showing? → Make sure you’ve assigned the correct link lists from Online Store → Navigation.
 
 Social Icons missing? → Check your theme settings under Theme Settings → Social Media.
@@ -86,6 +86,6 @@ Logo blurry? → Upload a higher resolution image (Shopify auto-scales down).
 
 Alignment issues on mobile? → Section is mobile-optimized, but double-check padding/margins in the theme editor.
 
-# Summary
+# ✅ Summary
 This Custom Footer Section ensures a professional, branded experience at the bottom of your site — fully customizable without editing code.
 
