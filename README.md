@@ -1,5 +1,5 @@
 # Custom Footer Section – User Manual
-## Overview
+## 🎯 Overview
 The Custom Footer Section is a flexible, responsive footer layout for your Shopify store. It allows you to showcase your logo, descriptions, contact information, social links, navigation menus, and payment icons — all easily customizable through the Shopify theme editor.
 
 <img width="1900" height="490" alt="custom footer section pc view" src="https://github.com/user-attachments/assets/2b99e6f7-cb74-4e70-8797-f8ae719c3953" />
