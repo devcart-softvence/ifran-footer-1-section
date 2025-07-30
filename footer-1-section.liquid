@@ -1,14 +1,15 @@
 <style>
   footer {
     background-color: {{ section.settings.footer-bg-color }};
-    padding: 40px 20px;
+    padding-top: {{ section.settings.footer-padding-top }}px;
+    padding-bottom: {{ section.settings.footer-padding-bottom }}px;
     color: {{ section.settings.text-color }};
   }
 
   .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding-top: 60px;
+    padding: 0 20px;
   }
 
   .footer-logo {
@@ -46,7 +47,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 32px;
+    gap: {{ section.settings.section-gap }}px;
     margin-bottom: 60px;
   }
 
@@ -54,20 +55,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 32px;
+    gap: {{ section.settings.section-gap }}px;
   }
 
   .footer-menu-list h4,
-  .footer-contact-info h4,
   .footer-contact-info h2,
+  .footer-contact-info h4,
   .footer-contact-info p,
   .footer-bottom-part p {
     color: {{ section.settings.text-color }};
   }
 
-  .footer-menu-list h4 {
-    font-size: 20px;
-    margin-bottom: 10px;
+  .footer-menu-list h4,
+  .footer-contact-info h4 {
+    font-size: {{ section.settings.heading-font-size }}px;
+    font-weight: {{ section.settings.heading-font-weight }};
+    margin-bottom: 16px;
   }
 
   .footer-menu-list ul {
@@ -81,29 +84,42 @@
 
   .footer-menu-list ul li a {
     color: {{ section.settings.link-color }};
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.3s ease;
   }
 
-.footer-menu-list ul li a:hover {
-  color: {{ section.settings.link-hover-color | default: '#5639F8' }};
-    {% if section.settings.link-underline %}
-      text-decoration: underline;
-    {% else %}
-      text-decoration: none;
-    {% endif %}
-}
+  .footer-menu-list ul li a:hover {
+    color: {{ section.settings.link-hover-color }};
+  }
+
+  {% if section.settings.link-underline %}
+  .footer-menu-list ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: {{ section.settings.link-hover-color }};
+    transition: width 0.5s ease;
+  }
+
+  .footer-menu-list ul li a:hover::after {
+    width: 100%;
+  }
+  {% endif %}
 
   .footer-contact-info h2 {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: {{ section.settings.contact-font-size }}px;
+    font-weight: {{ section.settings.contact-font-weight }};
     line-height: 28px;
   }
 
-  .footer-contact-info h4 {
-    font-size: 22px;
-  }
-
   .footer-contact-info p {
-    font-size: 16px;
+    font-size: {{ section.settings.contact-font-size }}px;
+    font-weight: {{ section.settings.contact-font-weight }};
   }
 
   .footer-bottom-part {
@@ -118,24 +134,13 @@
     margin-right: 10px;
   }
 
-  @media screen and (max-width: 767px) {
-    .footer-bottom-part {
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-      text-align: center;
-    }
-  }
-
   @media screen and (min-width: 768px) {
     .footer-top-part {
       flex-direction: row;
-      gap: 80px;
     }
 
     .footer-menu-container {
       flex-direction: row;
-      gap: 100px;
     }
   }
 </style>
@@ -144,7 +149,7 @@
   <div class="footer-container">
     <div class="footer-top-part">
       <div>
-        <img src="{{ section.settings.logo | img_url: '100x' }}" height="100" width="100" class="footer-logo" loading="lazy">
+        <img src="{{ section.settings.logo | img_url: '120x' }}" height="100" width="100" class="footer-logo" loading="lazy">
         <p class="footer-description">{{ section.settings.footer-description }}</p>
         <div class="footer-social-container">
           {% render 'social-icons', class: 'footer__list-social' %}
@@ -182,7 +187,7 @@
         <p>{{ section.settings.contact-column-subheading }}</p>
         <h2>{{ section.settings.contact-info-1 }}</h2>
         <p>{{ section.settings.contact-info-2 }}</p>
-        {{ section.settings.contact-info-3 }}
+        <p>{{ section.settings.contact-info-3 }}</p>
       </div>
     </div>
 
@@ -196,7 +201,7 @@
           {{ payment_types | payment_type_svg_tag }}
         </div>
       {% else %}
-        <img src="{{ section.settings.payments-logo | img_url: '500x' }}" class="footer-payments-logo" loading="lazy">
+        <img src="{{ section.settings.payments-logo | img_url: '150x' }}" class="footer-payments-logo" loading="lazy">
       {% endif %}
     </div>
   </div>
@@ -215,26 +220,92 @@
     {
       "type": "color",
       "id": "text-color",
-      "label": "Global Text Color",
-      "default": "#333333"
+      "label": "Text Color",
+      "default": "#010F1C"
     },
     {
       "type": "color",
       "id": "link-color",
-      "label": "List Link Color",
-      "default": "#333333"
+      "label": "Link Color",
+      "default": "#010F1C"
+    },
+    {
+      "type": "color",
+      "id": "link-hover-color",
+      "label": "Link Hover Color / Underline Color",
+      "default": "#5639F8"
     },
     {
       "type": "checkbox",
       "id": "link-underline",
-      "label": "Underline Footer Links on hover?",
+      "label": "Enable Animated Underline on Links",
       "default": true
     },
     {
-        "type": "color",
-        "id": "link-hover-color",
-        "label": "List Link Hover Color",
-        "default": "#5639F8"
+      "type": "range",
+      "id": "heading-font-size",
+      "label": "Heading Font Size (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "select",
+      "id": "heading-font-weight",
+      "label": "Heading Font Weight",
+      "default": "600",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "contact-font-size",
+      "label": "Contact Info Font Size (px)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "contact-font-weight",
+      "label": "Contact Info Font Weight",
+      "default": "400",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "footer-padding-top",
+      "label": "Top Padding (px)",
+      "min": 0,
+      "max": 100,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "footer-padding-bottom",
+      "label": "Bottom Padding (px)",
+      "min": 0,
+      "max": 100,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section-gap",
+      "label": "Column Gap (px)",
+      "min": 20,
+      "max": 100,
+      "default": 40
     },
     {
       "type": "image_picker",
@@ -250,25 +321,25 @@
     {
       "type": "text",
       "id": "menu-header-1",
-      "label": "Heading",
+      "label": "Menu Heading 1",
       "default": "Product"
     },
     {
       "type": "link_list",
       "id": "product_links",
-      "label": "Menu",
+      "label": "Menu Links 1",
       "default": "footer"
     },
     {
       "type": "text",
       "id": "menu-header-2",
-      "label": "Heading",
+      "label": "Menu Heading 2",
       "default": "Information"
     },
     {
       "type": "link_list",
       "id": "info_links",
-      "label": "Menu",
+      "label": "Menu Links 2",
       "default": "footer"
     },
     {
@@ -298,8 +369,8 @@
     {
       "type": "text",
       "id": "contact-info-3",
-      "label": "Contact Info-3 (HTML allowed)",
-      "default": "<p>79 Sleepy Hollow St.<br/>Jamaica, New York 1432</p>"
+      "label": "Contact Info-3",
+      "default": "79 Sleepy Hollow St. Jamaica, NY 1432"
     },
     {
       "type": "text",
@@ -310,10 +381,9 @@
     {
       "type": "image_picker",
       "id": "payments-logo",
-      "label": "Upload your Payments Image"
+      "label": "Upload your image"
     }
   ],
-  "blocks": [],
   "presets": [
     {
       "name": "Custom-Footer-Section"
