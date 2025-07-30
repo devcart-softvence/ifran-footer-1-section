@@ -1,271 +1,323 @@
 <style>
-  footer{
-    background-color: {{ section.settings.footer-bg-color}};
+  footer {
+    background-color: {{ section.settings.footer-bg-color }};
     padding: 40px 20px;
-    color: #333;
+    color: {{ section.settings.text-color }};
   }
-  .footer-container{
-    max-width:1200px;
+
+  .footer-container {
+    max-width: 1200px;
     margin: 0 auto;
     padding-top: 60px;
   }
-  .footer-logo{
+
+  .footer-logo {
     width: 135px;
     margin-bottom: 20px;
   }
-  .footer-description{
+
+  .footer-description {
     font-size: 18px;
-    color: #010F1C;
+    color: {{ section.settings.text-color }};
     max-width: 290px;
   }
-  .footer-social-container{
+
+  .footer-social-container {
     display: flex;
     gap: 6px;
   }
-  .footer__list-social{
+
+  .footer__list-social {
     display: flex;
     gap: 6px;
     height: 38px;
     list-style: none;
     padding: 0;
   }
-  .footer-social-icon{
+
+  .footer-social-icon {
     height: 38px;
     width: 38px;
     background-color: white;
     border-radius: 8px;
   }
-  .footer-top-part{
+
+  .footer-top-part {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 32px;
     margin-bottom: 60px;
   }
-  .footer-menu-container{
+
+  .footer-menu-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 32px;
   }
+
+  .footer-menu-list h4,
+  .footer-contact-info h4,
+  .footer-contact-info h2,
+  .footer-contact-info p,
+  .footer-bottom-part p {
+    color: {{ section.settings.text-color }};
+  }
+
   .footer-menu-list h4 {
     font-size: 20px;
     margin-bottom: 10px;
   }
+
   .footer-menu-list ul {
     padding: 0;
   }
+
   .footer-menu-list ul li {
     list-style-type: none;
     margin-bottom: 4px;
   }
-  .footer-menu-list ul li :hover {
-    color: #5639F8;
-    text-decoration: underline;
+
+  .footer-menu-list ul li a {
+    color: {{ section.settings.link-color }};
   }
-  .footer-contact-info h2{
+
+.footer-menu-list ul li a:hover {
+  color: {{ section.settings.link-hover-color | default: '#5639F8' }};
+    {% if section.settings.link-underline %}
+      text-decoration: underline;
+    {% else %}
+      text-decoration: none;
+    {% endif %}
+}
+
+  .footer-contact-info h2 {
     font-size: 18px;
     font-weight: 600;
     line-height: 28px;
   }
-  .footer-contact-info h4{
+
+  .footer-contact-info h4 {
     font-size: 22px;
   }
-  .footer-contact-info p{
+
+  .footer-contact-info p {
     font-size: 16px;
   }
-  .footer-bottom-part{
+
+  .footer-bottom-part {
     display: flex;
     justify-content: space-between;
     border-top: 1px solid #010f1c1a;
     padding-top: 40px;
   }
+
   .payment-icons svg {
     width: 50px;
     margin-right: 10px;
   }
 
-  @media screen and (min-width: 768px){
-    .footer-top-part{
+  @media screen and (max-width: 767px) {
+    .footer-bottom-part {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .footer-top-part {
       flex-direction: row;
       gap: 80px;
     }
-    .footer-menu-container{
+
+    .footer-menu-container {
       flex-direction: row;
       gap: 100px;
     }
   }
-  
 </style>
 
-<footer >
+<footer>
   <div class="footer-container">
     <div class="footer-top-part">
-      <div> 
-        <img src="{{section.settings.logo | img_url: '100x'  }}" height="100" width="100" class="footer-logo">
-        <p class="footer-description"> {{ section.settings.footer-description }}</p>
-       
+      <div>
+        <img src="{{ section.settings.logo | img_url: '100x' }}" height="100" width="100" class="footer-logo" loading="lazy">
+        <p class="footer-description">{{ section.settings.footer-description }}</p>
         <div class="footer-social-container">
-        {% render 'social-icons', class: 'footer__list-social' %}
+          {% render 'social-icons', class: 'footer__list-social' %}
         </div>
       </div>
-    
-       <div class="footer-menu-container">
-          <div class="footer-menu-list">
+
+      <div class="footer-menu-container">
+        <div class="footer-menu-list">
           <h4>{{ section.settings.menu-header-1 }}</h4>
           <ul>
-        {% assign product_links = linklists[section.settings.product_links] %}
-          {% if product_links.links.size > 0 %}
-            {% for link in product_links.links %}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-          {% endif %}
-
+            {% assign product_links = linklists[section.settings.product_links] %}
+            {% if product_links.links.size > 0 %}
+              {% for link in product_links.links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            {% endif %}
           </ul>
         </div>
 
         <div class="footer-menu-list">
           <h4>{{ section.settings.menu-header-2 }}</h4>
           <ul>
-        {% assign info_links = linklists[section.settings.info_links] %}
-          {% if info_links.links.size > 0 %}
-            {% for link in info_links.links %}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-          {% endif %}
-
+            {% assign info_links = linklists[section.settings.info_links] %}
+            {% if info_links.links.size > 0 %}
+              {% for link in info_links.links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            {% endif %}
           </ul>
         </div>
-       </div>
+      </div>
 
       <div class="footer-contact-info">
         <h4>{{ section.settings.contact-column-header }}</h4>
         <p>{{ section.settings.contact-column-subheading }}</p>
         <h2>{{ section.settings.contact-info-1 }}</h2>
         <p>{{ section.settings.contact-info-2 }}</p>
-        <p>{{ section.settings.contact-info-3 }}</p>
-      </div>
-      
-      
-      </div>
-
-    
-
-      <div class="footer-bottom-part">
-        <div>
-          <p>{{ section.settings.footer-bottom-text }}</p>
-        </div>
-
-        {% if shop.enabled_payment_types.size > 0 %}
-          <div class="payment-icons">
-            {{ payment_types | payment_type_svg_tag }}
-          </div>
-        {% else %}
-          <img src="{{ section.settings.payments-logo | img_url: '500x' }}" class="footer-payments-logo">
-        {% endif %}
+        {{ section.settings.contact-info-3 }}
       </div>
     </div>
+
+    <div class="footer-bottom-part">
+      <div>
+        <p>{{ section.settings.footer-bottom-text }}</p>
+      </div>
+
+      {% if shop.enabled_payment_types.size > 0 %}
+        <div class="payment-icons">
+          {{ payment_types | payment_type_svg_tag }}
+        </div>
+      {% else %}
+        <img src="{{ section.settings.payments-logo | img_url: '500x' }}" class="footer-payments-logo" loading="lazy">
+      {% endif %}
+    </div>
+  </div>
 </footer>
 
 {% schema %}
-  {
-    "name": "Custom-Footer-Section",
-    "settings": [
-      {
+{
+  "name": "Custom-Footer-Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "footer-bg-color",
+      "label": "Footer Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Global Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "link-color",
+      "label": "List Link Color",
+      "default": "#333333"
+    },
+    {
+      "type": "checkbox",
+      "id": "link-underline",
+      "label": "Underline Footer Links on hover?",
+      "default": true
+    },
+    {
         "type": "color",
-        "id": "footer-bg-color",
-        "label": "Footer Background Color",
-        "default": " #f8f9fa"
-      },
-      {
+        "id": "link-hover-color",
+        "label": "List Link Hover Color",
+        "default": "#5639F8"
+    },
+    {
       "type": "image_picker",
       "id": "logo",
-      "label": "Upload your Logo",
-      "info": "Upload your Logo",
-      },
-      {
-        "type": "text",
-        "id": "footer-description",
-        "label": "Footer Description",
-        "default": "We are a team of designers and developers that create high quality Shopify Stores."
-      },
-      {
-        "type": "text",
-        "id": "menu-header-1",
-        "label": "Heading",
-        "default": "Product"
-      },
-      {
+      "label": "Upload your Logo"
+    },
+    {
+      "type": "text",
+      "id": "footer-description",
+      "label": "Footer Description",
+      "default": "We are a team of designers and developers that create high quality Shopify Stores."
+    },
+    {
+      "type": "text",
+      "id": "menu-header-1",
+      "label": "Heading",
+      "default": "Product"
+    },
+    {
       "type": "link_list",
       "id": "product_links",
       "label": "Menu",
       "default": "footer"
-      },
-      {
-        "type": "text",
-        "id": "menu-header-2",
-        "label": "Heading",
-        "default": "Information"
-      },
-      {
+    },
+    {
+      "type": "text",
+      "id": "menu-header-2",
+      "label": "Heading",
+      "default": "Information"
+    },
+    {
       "type": "link_list",
       "id": "info_links",
       "label": "Menu",
       "default": "footer"
-      },
-      {
-        "type": "text",
-        "id": "contact-column-header",
-        "label": "Contact Column Heading",
-        "default": "Talk To Us"
-      },
-      {
-        "type": "text",
-        "id": "contact-column-subheading",
-        "label": "Sub-heading",
-        "default": "Got Questions? Call us"
-      },
-      {
-        "type": "text",
-        "id": "contact-info-1",
-        "label": "Contact Info-1",
-        "default": "+670 413 90 762"
-      },
-      {
-        "type": "text",
-        "id": "contact-info-2",
-        "label": "Contact Info-2",
-        "default": "shofy@support.com"
-      },
-      {
-        "type": "text",
-        "id": "contact-info-3",
-        "label": "Contact Info-3",
-        "default": "<P> 79 Sleepy Hollow St. <br/> Jamaica, New York 1432 </p>"
-      },
-
-
-      {
-        "type": "text",
-        "id": "footer-bottom-text",
-        "label": "Footer Bottom Text",
-        "default": "©2025 All Rights Reserved "
-      },
-      {
+    },
+    {
+      "type": "text",
+      "id": "contact-column-header",
+      "label": "Contact Column Heading",
+      "default": "Talk To Us"
+    },
+    {
+      "type": "text",
+      "id": "contact-column-subheading",
+      "label": "Sub-heading",
+      "default": "Got Questions? Call us"
+    },
+    {
+      "type": "text",
+      "id": "contact-info-1",
+      "label": "Contact Info-1",
+      "default": "+670 413 90 762"
+    },
+    {
+      "type": "text",
+      "id": "contact-info-2",
+      "label": "Contact Info-2",
+      "default": "shofy@support.com"
+    },
+    {
+      "type": "text",
+      "id": "contact-info-3",
+      "label": "Contact Info-3 (HTML allowed)",
+      "default": "<p>79 Sleepy Hollow St.<br/>Jamaica, New York 1432</p>"
+    },
+    {
+      "type": "text",
+      "id": "footer-bottom-text",
+      "label": "Footer Bottom Text",
+      "default": "©2025 All Rights Reserved"
+    },
+    {
       "type": "image_picker",
       "id": "payments-logo",
-      "label": "Upload your image",
-      "info": "Upload your image",
-      },
-      
-      
-    ],
-    "blocks": [
-    ],
-    "presets": [
-      {
-        "name": "Custom-Footer-Section"
-      }
-    ],
-  }
+      "label": "Upload your Payments Image"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Custom-Footer-Section"
+    }
+  ]
+}
 {% endschema %}
