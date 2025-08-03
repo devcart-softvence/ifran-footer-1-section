@@ -47,7 +47,7 @@ Menu Header 2: Set another heading (e.g., Information).
 
 Info Links: Choose another navigation menu to display informational links.
 
-💡 You can manage your navigation menus via Online Store → Navigation.
+##💡 You can manage your navigation menus via Online Store → Navigation.
 
 ## 4. Configure Contact Information
 Contact Column Heading: Title for the contact section.
