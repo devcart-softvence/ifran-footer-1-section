@@ -13,11 +13,11 @@ Follow these simple steps to install and use the Footer section in your Shopify 
 - Find your current live theme, then click on 3 dots (...) > Edit code.
 
 ## 2. Create a New Section
-Inside the code editor, look for the Sections folder.
+- Inside the code editor, look for the Sections folder.
 
-Click Add a new section and name it.
+- Click Add a new section and name it.
 
-Paste the entire section code into the new file and click Save.
+- Paste the entire section code into the new file and click Save.
 
 
 
