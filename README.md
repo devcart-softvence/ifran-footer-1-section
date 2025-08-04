@@ -8,9 +8,9 @@ The Custom Footer Section is a flexible, responsive footer layout for your Shopi
 Follow these simple steps to install and use the Footer section in your Shopify theme:
 
 ## 1. Open Your Shopify Theme Code Editor
-From your Shopify admin, go to Online Store > Themes.
+- From your Shopify admin, go to Online Store > Themes.
 
-Find your current live theme, then click on 3 dots (...) > Edit code.
+- Find your current live theme, then click on 3 dots (...) > Edit code.
 
 ## 2. Create a New Section
 Inside the code editor, look for the Sections folder.
